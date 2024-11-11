@@ -1,0 +1,11 @@
+{
+  "name": "cloudstation_project",
+  "version": "1.0.0",
+  "description": "Proof of Concept for a scalable Local News Application, based on simplified event-driven microservices architecture and Docker containers. :whale:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
