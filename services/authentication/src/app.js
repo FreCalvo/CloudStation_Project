@@ -16,4 +16,4 @@ app.use(Helmet());
 // Setup the API routes
 app.use(authRouter.routes()).use(authRouter.allowedMethods({ throw: true }));
 
-module.exports = app;
+module.exports = app; 
