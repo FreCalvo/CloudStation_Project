@@ -27,6 +27,11 @@ jobs:
           uses: actions/setup-node@v3
           with:
             node-version: '16'
+        - name: Snyk Authentication
+          run: echo ${{ secrets.SNYK_TOKEN }} | snyk auth
+  
+        - name: Run snyk protect
+          run: cd services/authentication && npm run snyk-protect
 
         - name: Run npm install
           run: cd services/authentication && npm install
@@ -36,6 +41,8 @@ jobs:
 
         - name: Run npm tests
           run: cd services/authentication && npm test
+
+        
 
     docker-build-and-push:
         runs-on: ubuntu-latest
@@ -65,24 +72,3 @@ jobs:
           run: |
             cd services/authentication && VERSION=$(jq -r .version < package.json)
             docker push ${{ secrets.DOCKER_USERNAME }}/authentication:v$VERSION
-    
-    snyk-protect:
-        runs-on: ubuntu-latest
-        if: github.ref == 'refs/heads/develop'
-        steps:
-        - name: Checkout code
-          uses: actions/checkout@v3
-
-        - name: Set up Node.js
-          uses: actions/setup-node@v3
-          with:
-            node-version: '16'
-
-        - name: Install npm dependencies
-          run: cd services/authentication && npm install
-
-        - name: Snyk Authentication
-          run: echo ${{ secrets.SNYK_TOKEN }} | snyk auth
-
-        - name: Run snyk protect
-          run: cd services/authentication && npm run snyk-protect
