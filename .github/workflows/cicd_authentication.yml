@@ -27,10 +27,15 @@ jobs:
           uses: actions/setup-node@v3
           with:
             node-version: '16'
-        - name: Snyk Authentication
-          run: echo ${{ secrets.SNYK_TOKEN }} | snyk auth
-  
-        - name: Run snyk protect
+
+        - name: Authenticate with Snyk
+          env:
+              SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          run: |
+            cd services/authentication
+            snyk auth $SNYK_TOKEN
+            
+        - name: Run Snyk Protect
           run: cd services/authentication && npm run snyk-protect
 
         - name: Run npm install
