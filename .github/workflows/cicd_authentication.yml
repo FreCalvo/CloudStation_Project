@@ -28,6 +28,19 @@ jobs:
           with:
             node-version: '16'
 
+        - name: Install Snyk
+          run: npm install -g snyk  # Instala Snyk globalmente
+
+        - name: Authenticate with Snyk
+          env:
+            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          run: |
+            cd services/authentication
+            snyk auth $SNYK_TOKEN
+
+        - name: Run Snyk Protect
+          run: cd services/authentication && npm run snyk-protect
+
         - name: Run npm install
           run: cd services/authentication && npm install
 

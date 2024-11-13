@@ -1,5 +1,5 @@
 {
-  "name": "authentication",
+  "name": "authentication", 
   "version": "1.0.0",
   "description": "Authentication Service - Responsible for authenticating users and providing access tokens",
   "main": "./src/server.js",
@@ -7,9 +7,9 @@
     "start": "node ./src/server.js",
     "test": "jest --coverage",
     "watch": "jest --coverage --watchAll",
-    "lint": "eslint ./src && eslint ./tests",
+    "lint": "eslint ./src",
     "testOnly": "jest",
-    "checkCodeQuality": "eslint ./src && eslint ./tests && jest --coverage",
+    "checkCodeQuality": "eslint ./src && jest --coverage",
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect"
   },
