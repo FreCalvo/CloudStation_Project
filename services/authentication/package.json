@@ -1,5 +1,5 @@
 {
-  "name": "authentication",
+  "name": "authentication", 
   "version": "1.0.0",
   "description": "Authentication Service - Responsible for authenticating users and providing access tokens",
   "main": "./src/server.js",
